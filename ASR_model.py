@@ -2,24 +2,24 @@ from keras.models import Model
 from keras.layers import BatchNormalization, Conv1D, Dense, Input, Dropout, TimeDistributed, Activation, Bidirectional, LSTM
 
 
-def ASR_model(n_input_channels,
-              # CNN parameters
-              n_cnn_filters,
-              kernel_size, 
-              stride, 
-              padding_mode,
-              cnn_dropout,
-              dilation,
-              # RNN parameters
-              n_bdrnn_layers,
-              n_hidden_rnn,
-              input_dropout,      
-              recurrent_dropout,  
-              rnn_merge_mode,
-              # FC (Fully Connected) parameters
-              fc_n_hiddens,
-              fc_dropout,
-              output_dim = 29):
+def ASR_network(n_input_channels,
+                # CNN parameters
+                n_cnn_filters,
+                kernel_size, 
+                stride, 
+                padding_mode,
+                cnn_dropout,
+                dilation,
+                # RNN parameters
+                n_bdrnn_layers,
+                n_hidden_rnn,
+                input_dropout,      
+                recurrent_dropout,  
+                rnn_merge_mode,
+                # FC (Fully Connected) parameters
+                fc_n_hiddens,
+                fc_dropout,
+                output_dim = 29):
 
     # 1. Main acoustic input
     input_data = Input(name = 'the_input', shape = (None, n_input_channels))
