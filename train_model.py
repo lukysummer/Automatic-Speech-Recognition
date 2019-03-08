@@ -57,8 +57,8 @@ def train_model(model,
                 lr,
                 save_model_path,
                 spectrogram = True,
-                train_json = 'train_corpus.json',
-                valid_json = 'valid_corpus.json',
+                train_json = 'data/train_corpus.json',
+                valid_json = 'data/valid_corpus.json',
                 minibatch_size = 20,               
                 mfcc_dim = 13,
                 verbose = 1,
@@ -118,7 +118,27 @@ lr = 0.02
 save_model_path = "model_epoch_" + n_epochs + ".h5"
 use_spectrogram = True
 
-train_model(model = ASR_network, 
+ASR_NN = ASR_network(n_input_channels = 161,
+                     # CNN parameters
+                     n_cnn_filters = 200,
+                     kernel_size = 11, 
+                     stride = 2, 
+                     padding_mode = 'valid',
+                     dilation = 1,
+                     cnn_dropout = 0.3,
+                     # RNN parameters
+                     n_bdrnn_layers = 2,
+                     n_hidden_rnn = 200,
+                     input_dropout = 0.3,      # dropout values referenced from: 
+                     recurrent_dropout = 0.1,  # https://machinelearningmastery.com/use-dropout-lstm-networks-time-series-forecasting/
+                     rnn_merge_mode = 'sum',
+                     # FC (Fully Connected) parameters
+                     fc_n_hiddens = [200],
+                     fc_dropout = 0.3,
+                     output_dim = 29)
+
+
+train_model(model = ASR_NN, 
             n_epochs = n_epochs,
             lr = lr,
             save_model_path = 'model_final_43_epochs.h5',

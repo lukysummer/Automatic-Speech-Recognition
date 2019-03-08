@@ -8,7 +8,7 @@ from ASR_model import ASR_network
 #################### TEXT PREDICTION W/ 2 ADDED FEATURES: #####################
 ############################## 1. SPELL CORRECTION ############################
 corpus = AudioGenerator()
-corpus.load_train_data("train_corpus.json")
+corpus.load_train_data("data/train_corpus.json")
 corpus_texts = corpus.train_texts
 corpus_tokens = np.concatenate(np.array([sentence.lower().split() for sentence in corpus_texts]))
 token_counter = Counter(corpus_tokens)
