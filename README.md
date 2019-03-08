@@ -12,8 +12,12 @@ as a project for Udacity's Natural Language Processing Nanodegree ([Course Page]
 Following are some of the example outputs of the model (PRED) along with the true transcription (TRUE):
 
 
-* (TRUE) "her father is a most remarkable person to say the least" -> (PRED) **"her father s a most ere markcabl person to say the last"**
-* (TRUE) "he gave thanks for our food and comfort and prayed for the poor" -> (PRED) **"he gave think s for a foodant comfort and pride for the poor"**
+* (TRUE) "her father is a most remarkable person to say the least" -> 
+
+(PRED) **"her father s a most ere markcabl person to say the last"**
+* (TRUE) "he gave thanks for our food and comfort and prayed for the poor" -> 
+
+(PRED) **"he gave think s for a foodant comfort and pride for the poor"**
 
 
 
@@ -36,7 +40,7 @@ Train and Validation JSON files contain lines in a dictionary format: {"key": pa
 
 
 ## List of Hyperparameters Used:
-* INPUT:
+INPUT:
 
 
 * Input Feautres = Spectrogram (w/ varying temporal length & 161 Frequency levels)
@@ -56,7 +60,7 @@ Train and Validation JSON files contain lines in a dictionary format: {"key": pa
 * Order: **Activation -> Dropout -> Batch Normalization**
 
 
-* RNN LAYERS:
+RNN LAYERS:
 
 
 * Type: **Bidirectional LSTM**
@@ -68,7 +72,7 @@ Train and Validation JSON files contain lines in a dictionary format: {"key": pa
 * RNN Merge Mode: **'sum'**
 
 
-* FULLY CONNECTED LAYERS:
+FULLY CONNECTED LAYERS:
 
 
 * Number of Layers: **2**
@@ -77,7 +81,7 @@ Train and Validation JSON files contain lines in a dictionary format: {"key": pa
 * Dropout: **30%**
 
 
-* TRAINING:
+TRAINING:
 
 
 * Loss: **CTC Loss***
