@@ -12,12 +12,12 @@ as a project for Udacity's Natural Language Processing Nanodegree ([Course Page]
 Following are some of the example outputs of the model (PRED) along with the true transcription (TRUE):
 
 
-* (TRUE) "her father is a most remarkable person to say the least" -> 
+* (TRUE) "her father is a most remarkable person to say the least"  
 
-(PRED) **"her father s a most ere markcabl person to say the last"**
-* (TRUE) "he gave thanks for our food and comfort and prayed for the poor" -> 
+-> (PRED) **"her father s a most ere markcabl person to say the last"**
+* (TRUE) "he gave thanks for our food and comfort and prayed for the poor" 
 
-(PRED) **"he gave think s for a foodant comfort and pride for the poor"**
+-> (PRED) **"he gave think s for a foodant comfort and pride for the poor"**
 
 
 
