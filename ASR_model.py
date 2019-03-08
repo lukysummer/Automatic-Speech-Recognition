@@ -22,7 +22,8 @@ def ASR_network(n_input_channels,
                 output_dim = 29):
 
     # 1. Main acoustic input
-    input_data = Input(name = 'the_input', shape = (None, n_input_channels))
+    input_data = Input(name = 'input', 
+                       shape = (None, n_input_channels))
     
     
     # 2. Add a convolutional layer & dropout
@@ -56,14 +57,15 @@ def ASR_network(n_input_channels,
     
     # 5. Add a TimeDistributed Dense layers
     for i, n_hidden in enumerate(fc_n_hiddens + [output_dim]):
+        # if not the last FC layer, perform dropout & relu activation
         if i < len(fc_n_hiddens):
             out = TimeDistributed(Dense(n_hidden), name = "td_dense_" + str(i+1))(out)
             out = Dropout(fc_dropout, name='dropout_fc_' + str(i+1))(out)
             out = Activation('relu', name = 'fc_relu_' + str(i+1))(out)
-
+            
+        # if the last FC layer, perform softmax activation
         else:
             final_fc_out = TimeDistributed(Dense(n_hidden), name = "td_dense_" + str(i+1))(out)
-            
             y_pred = Activation('softmax', name = 'fc_softmax')(final_fc_out)
 
     
