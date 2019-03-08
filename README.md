@@ -14,10 +14,10 @@ Following are some of the example outputs of the model (PRED) along with the tru
 
 * (TRUE) "her father is a most remarkable person to say the least"  
 
---> (PRED) **"her father s a most ere markcabl person to say the last"**
+---> (PRED) **"her father s a most ere markcabl person to say the last"**
 * (TRUE) "he gave thanks for our food and comfort and prayed for the poor" 
 
---> (PRED) **"he gave think s for a foodant comfort and pride for the poor"**
+---> (PRED) **"he gave think s for a foodant comfort and pride for the poor"**
 
 
 
@@ -40,13 +40,14 @@ Train and Validation JSON files contain lines in a dictionary format: {"key": pa
 
 
 ## List of Hyperparameters Used:
+
 INPUT:
 
 
-* Input Feautres = Spectrogram (w/ varying temporal length & 161 Frequency levels)
+* Input Feautres: **Spectrogram** (w/ varying temporal length & 161 Frequency levels)
 
 
-* 1D CNN LAYERS ALONG TEMPORAL DIMENSION:
+1D CNN LAYERS ALONG TEMPORAL DIMENSION:
 
 
 * Number of Layers: **1**
