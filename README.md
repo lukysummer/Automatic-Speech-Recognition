@@ -31,10 +31,10 @@ Train and Validation JSON files contain lines in a dictionary format: {"key": pa
 /t * **"valid_small_corpus.json"**: Validation Corpus of 2620 sentences
 * **spectrogram_generator.py** : Code for generating spectrograms from raw audio files [Source](https://github.com/baidu-research/ba-dls-deepspeech)
 * **char_map.py** : Helper function for encoding each letter into int 
-* **data_generator.py** : Complete code for building, training, and making inference from seq2seq model in Keras
-* **ASR_model.py** : Complete Deep Neural Network Model (in Keras) for ASR
-* **train_model.py** : Code for training the ASR model with CTC loss
-* **predict_text.py** : 
+* **data_generator.py** : Data pre-processing code that constructs a batch dataset of audio spectrograms (input to ASR network) and true text transcriptions of the audio (labels) 
+* **ASR_model.py** : Complete Deep Neural Network Model for ASR (in Keras)
+* **train_model.py** : Code for training ASR Network with CTC loss
+* **predict_text.py** : Code for predicting the text, given the trained network parameters and audio spectrogram data
 * **ASR_Step_by_Step_Notebook.ipynb** : step-by-step Jupyter Notebook for for building, training, and making inference from the ASR model
 
 
