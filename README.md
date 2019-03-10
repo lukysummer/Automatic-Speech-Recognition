@@ -29,7 +29,7 @@ This repository contains:
 Train and Validation JSON files contain lines in a dictionary format: {"key": path to the .wav audio file, "duration": length of the audio file in senconds, "text": true transcription of the audio in text}
 /t * **"train_small_corpus.json"**: Training Corpus of 2703 sentences
 /t * **"valid_small_corpus.json"**: Validation Corpus of 2620 sentences
-* **spectrogram_generator.py** : Code for generating spectrograms from raw audio files [Source](https://github.com/baidu-research/ba-dls-deepspeech)
+* **spectrogram_generator.py** : Code for generating spectrograms from raw audio files ([Source](https://github.com/baidu-research/ba-dls-deepspeech))
 * **char_map.py** : Helper function for encoding each letter into int 
 * **data_generator.py** : Data pre-processing code that constructs a batch dataset of audio spectrograms (input to ASR network) and true text transcriptions of the audio (labels) 
 * **ASR_model.py** : Complete Deep Neural Network Model for ASR (in Keras)
