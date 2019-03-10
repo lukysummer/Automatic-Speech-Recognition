@@ -84,14 +84,4 @@ def spectrogram_from_file(filename,
         
         ind = np.where(freqs <= max_freq)[0][-1] + 1
         
-    return np.transpose(np.log(pxx[:ind, :] + eps)), pxx, freqs
-
-
-out, x, freqs = spectrogram_from_file("sample.wav",
-                                         frame_stride = 10,
-                                         frame_window = 20,
-                                         max_freq = 8000)
-print(out.shape)
-print(x.shape)
-print(freqs.shape)
-print(freqs[-10:])
+    return np.transpose(np.log(pxx[:ind, :] + eps))
