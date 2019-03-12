@@ -2,7 +2,12 @@
 
 <p align="center"><img src="images/pipeline.png" height = "256"></p>
 
-This is my implementation of Automatic Speech Recognition using Convolutional and Recurrent Neural Networks in Keras, 
+This is my implementation of Automatic Speech Recognition in Keras, using:
+
+* 1D CNN over Temporal Dimension 
+* Bi-directional LSTMs  
+
+
 as a project for Udacity's Natural Language Processing Nanodegree ([Course Page](https://www.udacity.com/course/natural-language-processing-nanodegree--nd892)).
 
 
