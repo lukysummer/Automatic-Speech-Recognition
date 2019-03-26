@@ -7,8 +7,8 @@ from keras.models import Model
 from keras.optimizers import SGD
 from keras.callbacks import ModelCheckpoint
 
-from Data_Generator import AudioGenerator
-from ASR_model import ASR_network
+from DataGenerator import AudioGenerator
+from ASR_Model import ASR_network
 
 
 def get_ctc_loss(args):
@@ -62,6 +62,7 @@ def add_ctc_loss(model_without_ctc):
 
 def train_model(ASR_model_without_ctc,
                 n_epochs,
+                batch_size,
                 lr,
                 save_loss_path,
                 save_model_path,
@@ -70,7 +71,6 @@ def train_model(ASR_model_without_ctc,
                 verbose = 1):
     
     ################### 1. Create Audio Generator Instance ####################
-    batch_size = 20
     n_epochs = n_epochs
     
     audio_generator = AudioGenerator(batch_size = batch_size)
@@ -118,36 +118,45 @@ def train_model(ASR_model_without_ctc,
     with open('results/' + save_loss_path, 'wb') as f:
         pickle.dump(loss_history.history, f)
         
-        
 
-ASR_net = ASR_network(n_input_channels = 161,
-                     # cnn params
-                     n_cnn_filters = 200,
-                     kernel_size = 11, 
-                     stride = 2, 
-                     padding_mode = 'valid',
-                     dilation = 1,
-                     cnn_dropout = 0.3,
-                     # rnn params
-                     n_bdrnn_layers = 2,
-                     n_hidden_rnn = 200,
-                     input_dropout = 0.3,      # dropout values referenced from: 
-                     recurrent_dropout = 0.1,  # https://machinelearningmastery.com/use-dropout-lstm-networks-time-series-forecasting/
-                     rnn_merge_mode = 'sum',
-                     # fc params
-                     fc_n_hiddens = [200],
-                     fc_dropout = 0.3,
-                     output_dim = 29)       
+
+ASR_net = ASR_network(spectrogram_dim = 161,
+                    # CNN params
+                    n_layers_cnn = 2,
+                    n_hidden_cnn = [128, 256],
+                    kernel_size = 11,
+                    stride = 1,
+                    dilation = 2,
+                    padding_mode_cnn = "valid",
+                    activation_cnn = "relu",
+                    dropout_cnn = 0.3,
+                    # Max Pooling params
+                    pooling_size = 4,
+                    pooling_stride = 2, 
+                    # RNN params
+                    type_rnn = "LSTM",
+                    n_layers_rnn = 2,
+                    n_hidden_rnn = 200,
+                    activation_rnn = "tanh",
+                    merge_mode_rnn = "sum",
+                    dropout_rnn_input = 0.3,
+                    dropout_rnn_recur = 0.1,
+                    # FC params
+                    n_layers_fc = 2,
+                    n_hidden_fc = [200, 29],
+                    dropout_fc = 0.3,
+                    activation_fc = "relu")       
 
 
 n_epochs = 30
-lr = 0.2
+lr = 0.02
 
 train_model(ASR_net,
             n_epochs = n_epochs,
+            batch_size = 20,
             lr = lr,
-            save_loss_path = "losses_" + n_epochs + "_epochs.pickle",
-            save_model_path = "model_" + n_epochs + "_epochs.h5",
-            train_corpus_path = "data/train_small_corpus.json",
-            valid_corpus_path = "data/valid_small_corpus.json",
+            save_loss_path = "losses_" + str(n_epochs) + "_epochs.pickle",
+            save_model_path = "model_" + str(n_epochs) + "_epochs.h5",
+            train_corpus_path = "data/train_corpus.json",
+            valid_corpus_path = "data/valid_corpus.json",
             verbose = 1)

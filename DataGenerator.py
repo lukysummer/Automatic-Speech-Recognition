@@ -1,7 +1,7 @@
 import json
 import numpy as np
 from spectrogram_generator import spectrogram_from_file
-from char_map2 import text_to_int
+from char_map import text_to_int
 
 
 class AudioGenerator():
