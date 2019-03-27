@@ -126,9 +126,7 @@ def ASR_network(spectrogram_dim = 161,
                                                            kernel_size,
                                                            stride,
                                                            padding_mode_cnn,
-                                                           dilation,
-                                                           pooling_size,
-                                                           pooling_stride)
+                                                           dilation)
     
     print(asr_model.summary(line_length=110))
     
@@ -141,9 +139,7 @@ def cnn_output_length(length,  # Input Length
                       kernel_size,
                       stride,
                       padding_mode_cnn,
-                      dilation,
-                      pooling_size,
-                      pooling_stride):
+                      dilation):
     """ Computes the output length (in temporal dimension) after 1D convolution along time """
     
     assert padding_mode_cnn in {"valid", "same", "causal"}, "CNN's Padding mode must be one of 'valid', 'same', or 'causal'."
@@ -153,16 +149,10 @@ def cnn_output_length(length,  # Input Length
     
     if padding_mode_cnn in ["same", "causal"] :
         for i in range(n_layers_cnn):
-            length = (length//stride) + int(not(length % stride == 0))   
-            # for maxpooling
-            if i == 0:
-                length = (length//pooling_stride) + int(not(length % pooling_stride == 0))   
+            length = (length + stride - 1) // stride
     
     elif padding_mode_cnn == "valid":  # no padding
         for i in range(n_layers_cnn):
-            length = length - kernel_size*dilation + dilation - 2
-            # for maxpooling
-            if i == 0:
-                length = (length - pooling_size)//pooling_stride + 1
+            length = (length - kernel_size + (kernel_size-1)*(dilation-1) + stride) // stride
             
     return length
