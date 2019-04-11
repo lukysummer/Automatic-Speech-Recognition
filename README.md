@@ -104,3 +104,4 @@ TRAINING:
 
 * Paper: ["Towards End-to-End Speech Recognition with Deep Convolutional Neural Networks"](https://arxiv.org/pdf/1701.02720.pdf)
 * Udacity's Natural Language Processing Nanodegree's workspace ([Course Page](https://www.udacity.com/course/natural-language-processing-nanodegree--nd892))
+* [https://github.com/baidu-research/ba-dls-deepspeech](https://github.com/baidu-research/ba-dls-deepspeech)
